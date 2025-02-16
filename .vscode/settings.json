@@ -56,6 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "10-Seconds-Arrow.sln",
+    "dotnet.defaultSolution": "10-Seconds.sln",
     "git.ignoreLimitWarning": true
 }

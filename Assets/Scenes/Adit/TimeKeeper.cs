@@ -5,13 +5,14 @@ using UnityEngine.UIElements;
 public class TimeKeeper : MonoBehaviour
 {
     public float timer = 10f;
-    private bool isGameOver = false;
+    public bool isGameOver = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
-    void GameOver()
+    public bool GameOver()
     {
         isGameOver = true;
         Debug.Log ("Kalah! Kamu Cupu.");
+        return isGameOver;
     }
 
     // Update is called once per frame

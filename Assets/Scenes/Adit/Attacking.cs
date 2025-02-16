@@ -4,30 +4,40 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using JetBrains.Annotations;
 using System;
+using UnityEditor.PackageManager;
 
 public class Attacking : MonoBehaviour 
 {
     public SpawnInstruction spawnInstruction;
     private KeyCode keyInput;
-    private Array arrayChecker;
-    private int i =0;
+    public int score =0;
 
     public void checkInput()
     {
         foreach (KeyCode key in System.Enum.GetValues(typeof(KeyCode)))
         {
             if (Input.GetKeyDown(key))
-            {
-                keyInput = spawnInstruction.activeInput[i];   
+            {   
+                if (score < spawnInstruction.activeInput.Count)
+                {
+                    keyInput = spawnInstruction.activeInput[score];
+                }
+                else {
+                    spawnInstruction.isSpawned = false;
+                }
                 if (key != keyInput)
                 {
                     Debug.Log("MISS ! ");
                 }
-                else {
-                    Destroy(spawnInstruction.activeArrows[i]);
-                    i += 1;
-                    Debug.Log("HIT!");
+                else 
+                {
+                    if (spawnInstruction.activeArrows[score] != false)
+                    {
+                        Destroy(spawnInstruction.activeArrows[score]);
+                        score += 1;
+                        Debug.Log("HIT!");
                     }
+                }
             
                 Debug.Log(keyInput);
 
