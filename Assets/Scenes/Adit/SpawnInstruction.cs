@@ -15,7 +15,7 @@ public class SpawnInstruction : MonoBehaviour
     public Transform spawnPoint;
     public Transform targetPoint;
 
-    public TimeKeeper timeKeeper;
+    public TimerManager timerManager;
     public float spacing = 1.5f;
     public bool isSpawned = false;
     public int noInstruct = 0;
@@ -25,12 +25,12 @@ public class SpawnInstruction : MonoBehaviour
     {
         StartCoroutine(SpawnArrows());
         attacking = GameObject.Find("Player").GetComponent<Attacking>();
-        timeKeeper = GameObject.Find("Time").GetComponent<TimeKeeper>();
+        timerManager = GameObject.Find("Timer").GetComponent<TimerManager>();
     }
 
     void Update()
     {
-        if (timeKeeper.isGameOver == true)
+        if (timerManager.isGameOver == true)
         {
             Debug.Log(attacking.score);
         }

@@ -9,5 +9,6 @@ public class TutorialScene : MonoBehaviour
     public void LoadGameScene()
     {
         SceneManager.LoadScene(2);
+        
     }
 }

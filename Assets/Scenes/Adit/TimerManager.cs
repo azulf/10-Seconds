@@ -5,7 +5,8 @@ public class TimerManager : MonoBehaviour
 {
     public TextMeshProUGUI timerText; // Gunakan TextMeshPro
     private float timeElapsed = 0f;
-    private bool isRunning = true; // Bisa diubah untuk start/pause
+    public bool isRunning = true; // Bisa diubah untuk start/pause
+    public bool isGameOver = false;
 
     void Update()
     {
@@ -18,12 +19,23 @@ public class TimerManager : MonoBehaviour
 
     void UpdateTimerUI()
     {
-        int minutes = Mathf.FloorToInt(timeElapsed / 60);
         int seconds = Mathf.FloorToInt(timeElapsed % 60);
-        timerText.text = string.Format("Timer: {0:00}:{1:00}", minutes, seconds);
+        timerText.text = string.Format("Timer: {0:00}",  seconds);
+        if (seconds >= 10)
+        {
+            StopTimer();
+            GameOver();
+        }
     }
 
     public void StartTimer() => isRunning = true;  // Untuk mulai timer
     public void StopTimer() => isRunning = false;  // Untuk menghentikan timer
     public void ResetTimer() { timeElapsed = 0f; UpdateTimerUI(); } // Reset timer
+
+    public bool GameOver()
+    {
+        isGameOver = true;
+        Debug.Log ("Kalah! Kamu Cupu.");
+        return isGameOver;
+    }
 }
